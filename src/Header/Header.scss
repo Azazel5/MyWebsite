@@ -1,0 +1,30 @@
+.header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    height: 88vh;
+    font-size: 2rem;
+
+    & > * {
+        margin-top: 10rem;
+    }
+
+    &__image {
+        border-radius: 50%;
+        width: 20%;
+        max-height: 25rem;
+        background-size: cover;
+    }
+}
+
+.container {
+    width: 50%;
+
+    & > *:not(:last-child) {
+        margin-bottom: 1rem;
+    }
+
+    &__title {
+        font-size: 3.3rem;
+    }
+}
