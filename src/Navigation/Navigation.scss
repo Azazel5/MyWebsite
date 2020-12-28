@@ -1,20 +1,26 @@
 .navigation-bar {
-    display: flex;
     position: absolute;
     top: 0;
     left: 0;
-    height: 6.5rem;
+    height: 5.5rem;
     width: 100%;
     box-sizing: border-box;
-    align-items: center;
-    justify-content: flex-end;
-    padding: 0 $global-margins;
     font-size: 1.5rem;
-    background: transparent;
     text-transform: uppercase;
     color: white;
+    z-index: 10;
+}
+
+.navigation-container {
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
 
     &__col {
+
+        list-style: none;
         border-radius: .5rem;
         cursor: pointer;
         padding: 1.5rem;

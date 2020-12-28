@@ -2,64 +2,46 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    height: 100vh;
+    position: relative;
+    height: 55vh;
     font-size: 2rem;
     color: white;
+    border-bottom: 1px solid var(--white-divider);
+}
+
+.header-hero {
+    width: 100%;
+    height: 80%;
     background-image: url('../Assets/images/mp.jpg');
     background-size: cover;
+    border-radius: 0 0 1rem 1rem;
 }
 
 .container {
     display: flex;
+    position: absolute;
+    bottom: 0;
     flex-direction: column;
     align-items: center;
-    padding: 1rem;
-    margin-top: 10rem;
-    margin-left: auto;
-    width: 50%;
+    width: 100%;
+    color: black;
 
     &__image {
         border: .5rem solid #fff;
         border-radius: 50%;
         width: 15%;
         height: auto;
-    }
-
-    & > *:not(:last-child) {
-        margin-bottom: $margin-longbottoms;
+        margin-bottom: 1rem;
     }
 
     &__title {
         font-size: 3.3rem;
+        margin-bottom: .3rem;
     }
 
-    &__blast-grid {
-        display: grid;
-        width: 100%;
-        font-size: 1.6rem;
-        font-style: italic;
-        color: black;
-        grid-template-columns: .5fr .5fr;
-        grid-template-rows: 5rem 5rem 5rem;
-        grid-gap: .8rem;
-
-        &__element {
-            position: relative;
-            background-image: linear-gradient(to right, #bdc3c7 88%, #2c3e50);
-            line-height: 5rem;
-
-            & span {
-                margin-left: .5rem;
-            }
-        }
+    &__subtitle {
+        color: #606770;
+        font-size: 1.7rem;
+        margin-bottom: 1rem;
     }
-}
-
-.svg-icon {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translate(-50%, -50%);
-    height: 2rem;
-    width: 2rem;
 }
