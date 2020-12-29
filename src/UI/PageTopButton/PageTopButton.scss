@@ -4,18 +4,25 @@
     right: 0;
     border: 0;
     border-radius: 50%;
-    margin: 1rem 1.5rem;
+    margin: .5rem .5rem;
     padding: 1rem;
     cursor: pointer;
+    transition: all .2s;
+    background-color: black;
 
     & svg {
         height: 3.5rem;
         width: 3.5rem;
+        fill: white;
     }
 
     &:active,
     &:visited,
     &:focus {
         outline: none;
+    }
+
+    &:hover {
+        transform: translateY(-6px) scale(1.05);
     }
 }

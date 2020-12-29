@@ -1,12 +1,28 @@
 .portfolio-section {
+    display: grid;
+    grid-template-columns: .35fr .65fr;
+    grid-column-gap: 2rem;
+    position: absolute;
+    left: 0;
+    right: 0;
+    background-color: #F0F2F5;
+    padding: 0 10rem;
+
+    &__left,
+    &__right {
+        margin-top: 1.5rem;
+        
+        & > *:not(:last-child) {
+            margin-bottom: 1.5rem;
+        }
+    }
+
     &__heading {
         text-align: center;
         color: black;
         font-weight: 600;
         font-size: 3.2rem;
         letter-spacing: 1px;
-        margin-top: 1.5rem;
-        margin-bottom: 2rem;
     }
 
     &__portfolio-item-box {

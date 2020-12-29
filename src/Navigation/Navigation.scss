@@ -9,17 +9,17 @@
     text-transform: uppercase;
     color: white;
     z-index: 10;
+    padding: 0 10rem;
+
 }
 
 .navigation-container {
-
     display: flex;
     align-items: center;
     justify-content: flex-end;
     height: 100%;
 
     &__col {
-
         list-style: none;
         border-radius: .5rem;
         cursor: pointer;

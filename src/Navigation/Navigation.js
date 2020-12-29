@@ -1,13 +1,6 @@
-import { useState } from 'react'
-
 const Navigation = props => {
-    // State variables
-    const [navbarYPosition, setNavbarYPosition] = useState(0)
-
     // Props variables 
     const { eventHandlers } = props
-
-    // inline styles 
 
     return (
         <nav className="navigation-bar">

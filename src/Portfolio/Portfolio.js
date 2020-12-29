@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { projects } from './projects'
 import Sprite from '../Assets/SVG/symbol-defs.svg'
+import FloatingCard from '../UI/FloatingCard/FloatingCard'
 
 const Portfolio = props => {
     const { portRef } = props
@@ -33,8 +34,11 @@ const Portfolio = props => {
 
     return (
         <div className="portfolio-section" ref={portRef}>
-            <h1 className="portfolio-section__heading">Portfolio</h1>
-            <div className="centered-container">
+            <div className="portfolio-section__left">
+                <FloatingCard />
+            </div>
+            <div className="portfolio-section__right">
+                <h1 className="portfolio-section__heading">Portfolio</h1>
                 <div className="portfolio-section__portfolio-item-box">{portfioItems}</div>
             </div>
         </div>
