@@ -1,5 +1,5 @@
 .navigation-bar {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     height: 5.5rem;
@@ -10,7 +10,8 @@
     color: white;
     z-index: 10;
     padding: 0 10rem;
-
+    background-color: transparent;
+    transition: background-color .3s;
 }
 
 .navigation-container {
@@ -29,6 +30,15 @@
         &:hover {
             background-color: white;
             color: black;
+        }
+
+        &--shown {
+            color: black;
+
+            &:hover {
+                background-color: black;
+                color: white;
+            }
         }
     }
 }

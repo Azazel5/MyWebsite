@@ -1,4 +1,7 @@
 .floating-card {    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 100%;
     background-color: white;
     font-size: 1.5rem;
@@ -18,9 +21,5 @@
         & span {
             font-weight: 700;
         }
-    }
-
-    &__content {
-
     }
 }
