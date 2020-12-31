@@ -1,6 +1,6 @@
 .portfolio-section {
     display: grid;
-    grid-template-columns: .30fr .70fr;
+    grid-template-columns: .30fr 1fr;
     grid-column-gap: 2rem;
     position: absolute;
     left: 0;
@@ -27,22 +27,26 @@
 
     &__portfolio-item-box {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
-        grid-auto-rows: 20rem;
+        justify-content: center;
+        grid-template-columns: repeat(auto-fit, minmax(25rem, .75fr));
         grid-gap: 2rem;
 
         &__item {
             position: relative;
-            width: 100%;
             background-image: linear-gradient(
                 to right bottom,
                 rgba(#303030, .8),
-                rgba(#606060, .8)),
-                url('../Assets/images/placeholder.png');
-
-            background-size: cover;
+                rgba(#606060, .8));
+                
             cursor: pointer;
             transition: background-image .2s;
+
+            & img {
+                max-width: 100%;
+                height: auto;
+                object-fit: cover;
+                z-index: -1;
+            }
         } 
 
         &__item::after {
@@ -81,4 +85,28 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.tools-grid {
+    display: grid;
+    align-items: flex-start;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: black;
+    grid-template-columns: repeat(2, minmax(min-content, 1fr));
+    grid-gap: .8rem;
+
+    &__element {
+        position: relative;
+        line-height: 5rem;
+    }
+
+    &__icon {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translate(-50%, -50%);
+        height: 2rem;
+        width: 2rem;
+    }
 }

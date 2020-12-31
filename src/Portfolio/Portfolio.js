@@ -3,6 +3,7 @@ import { projects } from './projects'
 import Sprite from '../Assets/SVG/symbol-defs.svg'
 import FloatingCard from '../UI/FloatingCard/FloatingCard'
 import Timeline from '../UI/FloatingCard/Timeline/Timeline'
+import PlaceHolder from '../Assets/images/placeholder.png'
 
 const Portfolio = props => {
     // Props and state variables
@@ -26,7 +27,8 @@ const Portfolio = props => {
     const portfioItems = projects.map(project => (
         <div className={item_classes.join(" ")} key={project.id}
             onMouseOver={() => portfolioHoverOn(project.id)}
-            onMouseLeave={() => portfolioHoverOff(project.id)}> {
+            onMouseLeave={() => portfolioHoverOff(project.id)}>
+            <img src={PlaceHolder} alt="im" /> {
                 itemHovered[project.id] &&
                 <svg className="centered-icon-high-z-index" style={plusSvgDimensions}>
                     <use xlinkHref={`${Sprite}#icon-squared-plus`}></use>
@@ -51,8 +53,8 @@ const Portfolio = props => {
         }
     }
 
-    const mainContent = <Timeline timelineVariables={timelineVariables} />
-    const subContent = (
+    const mainContent1 = <Timeline timelineVariables={timelineVariables} />
+    const subContent1 = (
         <>
             <span className="floating-card__outer-span">Lives in <span>Nashua, New Hampshire</span></span>
             <span className="floating-card__outer-span">From <span>Kathmandu, Nepal</span></span>
@@ -60,12 +62,45 @@ const Portfolio = props => {
     )
 
     /* Tools floating card content */
+    const mainContent2 = (
+        <div className="tools-grid">
+            <div className="tools-grid__element">
+                <span>React</span>
+                <svg className="tools-grid__icon"><use xlinkHref={`${Sprite}#icon-react`}></use></svg>
+            </div>
+
+            <div className="tools-grid__element">
+                <span>Django</span>
+                <svg className="tools-grid__icon"><use xlinkHref={`${Sprite}#icon-django`}></use></svg>
+            </div>
+
+            <div className="tools-grid__element">
+                <span>C programming</span>
+                <svg className="tools-grid__icon"><use xlinkHref={`${Sprite}#icon-c`}></use></svg>
+            </div>
+
+            <div className="tools-grid__element">
+                <span>SCSS</span>
+                <svg className="tools-grid__icon"><use xlinkHref={`${Sprite}#icon-sass`}></use></svg>
+            </div>
+
+            <div className="tools-grid__element">
+                <span>TensorFlow</span>
+                <svg className="tools-grid__icon"><use xlinkHref={`${Sprite}#icon-tensorflow`}></use></svg>
+            </div>
+
+            <div className="tools-grid__element">
+                <span>Linux</span>
+                <svg className="tools-grid__icon"><use xlinkHref={`${Sprite}#icon-tux`}></use></svg>
+            </div>
+        </div>
+    )
 
     return (
         <div className="portfolio-section" ref={portRef}>
             <div className="portfolio-section__left">
-                <FloatingCard cardTitle="Intro" mainContent={mainContent} subContent={subContent} />
-                <FloatingCard cardTitle="Tools I enjoy working with" />
+                <FloatingCard cardTitle="Intro" mainContent={mainContent1} subContent={subContent1} />
+                <FloatingCard cardTitle="Tools I enjoy working with" mainContent={mainContent2} />
             </div>
 
             <div className="portfolio-section__right">
