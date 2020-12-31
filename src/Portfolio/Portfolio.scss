@@ -47,6 +47,17 @@
                 object-fit: cover;
                 z-index: -1;
             }
+
+            & svg {
+                z-index: 50;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                height: 4rem;
+                width: 4rem;
+                opacity: 0;
+            }
         } 
 
         &__item::after {
@@ -68,7 +79,8 @@
             transition: opacity .2s;
         }
 
-        &__item:hover::after {
+        &__item:hover::after,
+        &__item:hover svg {
             opacity: 1;
         }
     }
@@ -77,14 +89,6 @@
 .centered-container {
     width: 80%;
     margin: 0 auto;
-}
-
-.centered-icon-high-z-index {
-    z-index: 50;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
 .tools-grid {
