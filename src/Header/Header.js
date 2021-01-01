@@ -1,5 +1,4 @@
 import CoolPic from '../Assets/images/cool_pic.jpeg'
-// import Sprite from '../Assets/SVG/symbol-defs.svg'
 
 const Header = props => {
     return (

@@ -1,16 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 // A hook which detects when the window click has occured outside the given component 
-// It takes in the inputRef for a component and returns a boolean state value which 
-// represents whether the click occured outside the component or inside 
-const BackgroundClickHook = (inputRef) => {
-    const [clickOutside, setClickOutside] = useState(false)
+// It takes in the inputRef for a component and its parent's state callback to
+// make changes to the state that needs to change, which effectively closes the modal 
+const BackgroundClickHook = (inputRef, parentStateCallback) => {
 
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (inputRef.current && !inputRef.current.contains(event.target)) {
-                setClickOutside(true)
-            } else {
-                setClickOutside(false)
+                parentStateCallback(null)
             }
         }
 
@@ -19,10 +16,8 @@ const BackgroundClickHook = (inputRef) => {
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
-        
-    }, [inputRef]);
 
-    return clickOutside
+    }, [inputRef, parentStateCallback]);
 }
 
 export default BackgroundClickHook

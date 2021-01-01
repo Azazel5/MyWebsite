@@ -39,7 +39,7 @@
                 rgba(#606060, .8));
                 
             cursor: pointer;
-            transition: background-image .2s;
+            transition: background-image .5s;
 
             & img {
                 max-width: 100%;
@@ -76,7 +76,7 @@
             
             background-size: cover;
             cursor: pointer;
-            transition: opacity .2s;
+            transition: opacity .5s;
         }
 
         &__item:hover::after,

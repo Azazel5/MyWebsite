@@ -13,10 +13,7 @@ const Portfolio = props => {
 
     // Event Handlers 
     const onModalCloseHandler = () => {
-        // Must be passed to the modal explicitly because the close button will exist there
-        // I could make the modal itself stateful, but this works as well 
-
-        setSelectedPortfolioItem(false)
+        setSelectedPortfolioItem({})
     }
 
     // Other variables
