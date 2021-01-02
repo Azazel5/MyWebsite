@@ -8,13 +8,20 @@
     backdrop-filter: blur(1rem);
 
     &__container {
-        position: absolute;
         background-color: rgba($color: white, $alpha: .93);
         height: 65vh;
         width: 50vw;
-        top: 50%;
-        left: 50%;
         border-radius: 5rem;
+
+        // Vertically and horizontally center the container
+        // I could have used transform:translate, but it's being used for an animation, so I used a 
+        // different way, which seems to work fine
+        position: absolute;
+        top:0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
 
         -webkit-animation: slide-bottom .7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
         animation: slide-bottom .7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
@@ -22,56 +29,107 @@
 
     &__close-button {
         position: absolute;
+        border: none;
+        background-color: transparent;
         top: 2.5%;
         right: 5%;
+        transition: all .2s;
+        cursor: pointer;
+    
+        &:active,
+        &:focus {
+            outline: none;
+        }
+
+        &:hover {
+            transform: translateY(-6px) scale(1.05);
+        }
+
+        & svg {
+            height: 3rem;
+            width: 3rem;
+        }
     }
 
-    &__star-icon {
-        color: #2c3e50;
-        height: 3rem;
-        width: 3rem;
+    &__symbol {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &--star-icon {
+            color: #2c3e50;
+            height: 3rem;
+            width: 3rem;
+        }
+
+        &--line {
+            width: 100%;
+            max-width: 7rem;
+            height: 0.25rem;
+            background-color: #2c3e50;
+            border-radius: 1rem;
+            border-color: #2c3e50 !important;
+        }
+
+        &--line:first-of-type {
+            margin-right: 1rem;
+        }
+
+        &--line:last-of-type {
+            margin-left: 1rem;
+        }
     }
 }
 
 .centered-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 1.7rem;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 80%;
+    height: 80%;
+    text-align: center;
+
+    & > *:not(:first-child):not(:last-child) {
+        margin-bottom: 2rem;
+    }
 }
 
 /* Animation keyframes */
 @-webkit-keyframes slide-bottom {
 0% {
-    -webkit-transform: translateY(-20rem) translate(-50%, -50%);
-            transform: translateY(-20rem) translate(-50%, -50%);
+    -webkit-transform: translateY(-20rem);
+            transform: translateY(-20rem);
 }
 
 75% {
-    -webkit-transform: translateY(0) translate(-50%, -50%);
-            transform: translateY(0) translate(-50%, -50%);
+    -webkit-transform: translateY(2rem);
+            transform: translateY(2rem);
 }
 
 100% {
-    -webkit-transform: translateY(0) translate(-50%, -50%);
-            transform: translateY(0) translate(-50%, -50%);
-        }
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    }
 }
 @keyframes slide-bottom {
 0% {
-    -webkit-transform: translateY(-20rem) translate(-50%, -50%);
-            transform: translateY(-20rem) translate(-50%, -50%);
+    -webkit-transform: translateY(-20rem);
+            transform: translateY(-20rem);
 }
 
 75% {
-    -webkit-transform: translateY(2rem) translate(-50%, -50%);
-            transform: translateY(2rem) translate(-50%, -50%);
+    -webkit-transform: translateY(2rem);
+            transform: translateY(2rem);
 }
 
 100% {
-    -webkit-transform: translateY(0) translate(-50%, -50%);
-            transform: translateY(0) translate(-50%, -50%);
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
     }
 }
   
