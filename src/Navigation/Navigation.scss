@@ -11,7 +11,7 @@
     z-index: 10;
     padding: 0 10rem;
     background-color: transparent;
-    transition: background-color .3s;
+    transition: background-color 0.3s;
 }
 
 .navigation-container {
@@ -22,10 +22,10 @@
 
     &__col {
         list-style: none;
-        border-radius: .5rem;
+        border-radius: 0.5rem;
         cursor: pointer;
         padding: 1.5rem;
-        transition: all .3s;
+        transition: all 0.3s;
 
         &:hover {
             background-color: white;

@@ -1,11 +1,13 @@
-.floating-card {    
+.floating-card {
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 100%;
     background-color: white;
     font-size: 1.5rem;
-    padding: 1rem 0;
+    padding: 1rem 0.5rem;
+    box-shadow: 0 0.5rem 1rem 0 rgba($color: black, $alpha: 0.15);
+    box-sizing: border-box;
 
     & > * {
         margin: 1rem 1rem;

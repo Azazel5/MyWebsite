@@ -1,13 +1,14 @@
-@import './Header/Header.scss';
-@import './Navigation/Navigation.scss';
-@import './Portfolio/Portfolio.scss';
-@import './UI/PageTopButton/PageTopButton.scss';
-@import './UI/FloatingCard/FloatingCard.scss';
-@import './UI/FloatingCard/Timeline/Timeline.scss';
-@import './UI/Modal/Modal.scss';
+@import "./Header/Header.scss";
+@import "./Navigation/Navigation.scss";
+@import "./Portfolio/Portfolio.scss";
+@import "./UI/PageTopButton/PageTopButton.scss";
+@import "./UI/FloatingCard/FloatingCard.scss";
+@import "./UI/FloatingCard/Timeline/Timeline.scss";
+@import "./UI/Modal/Modal.scss";
+@import "./Blog/Blog.scss";
 
 :root {
-    --white-divider: #DADDE1;
+    --white-divider: #dadde1;
     --global-margins: 3rem;
     --margin-longbottoms: 2rem;
 }
@@ -25,17 +26,15 @@ html {
 }
 
 body {
-  position: relative;
-  padding: 0 10rem;
-  box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    padding: 0 10rem;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+        "Droid Sans", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }

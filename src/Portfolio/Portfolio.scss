@@ -1,45 +1,55 @@
 .portfolio-section {
     display: grid;
-    grid-template-columns: .30fr 1fr;
-    grid-column-gap: 2rem;
+    grid-template-columns: 0.35fr 1fr;
+    grid-template-rows: min-content 1fr;
+    grid-column-gap: 3rem;
     position: absolute;
     left: 0;
     right: 0;
-    background-color: #F0F2F5;
+    background-color: #f0f2f5;
     padding: 0 10rem;
 
     &__left,
     &__right {
         margin-top: 1.5rem;
-        
+
         & > *:not(:last-child) {
             margin-bottom: 1.5rem;
         }
+    }
+
+    &__left {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 7rem;
+        height: 100vh;
+    }
+
+    &__right {
+        grid-row: 1 / -1;
+        grid-column: 2 / 3;
+        font-size: 1.4rem;
     }
 
     &__heading {
         text-align: center;
         color: black;
         font-weight: 600;
-        font-size: 3.2rem;
         letter-spacing: 1px;
     }
 
     &__portfolio-item-box {
         display: grid;
         justify-content: center;
-        grid-template-columns: repeat(auto-fit, minmax(25rem, .75fr));
+        grid-template-columns: repeat(auto-fit, minmax(25rem, 0.75fr));
         grid-gap: 2rem;
 
         &__item {
             position: relative;
-            background-image: linear-gradient(
-                to right bottom,
-                rgba(#303030, .8),
-                rgba(#606060, .8));
-                
+            background-image: linear-gradient(to right bottom, rgba(#303030, 0.8), rgba(#606060, 0.8));
+
             cursor: pointer;
-            transition: background-image .5s;
+            transition: background-image 0.5s;
 
             & img {
                 max-width: 100%;
@@ -58,7 +68,7 @@
                 width: 4rem;
                 opacity: 0;
             }
-        } 
+        }
 
         &__item::after {
             position: absolute;
@@ -68,15 +78,12 @@
             height: 100%;
             width: 100%;
             opacity: 0;
-            background-image: linear-gradient(
-                to right bottom,
-                rgba(white, .8),
-                rgba(white, .8)),
-                url('../Assets/images/placeholder.png');
-            
+            background-image: linear-gradient(to right bottom, rgba(white, 0.8), rgba(white, 0.8)),
+                url("../Assets/images/placeholder.png");
+
             background-size: cover;
             cursor: pointer;
-            transition: opacity .5s;
+            transition: opacity 0.5s;
         }
 
         &__item:hover::after,
@@ -98,7 +105,7 @@
     font-style: italic;
     color: black;
     grid-template-columns: repeat(2, minmax(min-content, 1fr));
-    grid-gap: .8rem;
+    grid-gap: 0.8rem;
 
     &__element {
         position: relative;

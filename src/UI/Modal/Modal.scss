@@ -13,18 +13,13 @@
         width: 50vw;
         border-radius: 5rem;
 
-        // Vertically and horizontally center the container
-        // I could have used transform:translate, but it's being used for an animation, so I used a 
-        // different way, which seems to work fine
+        // The transform: translate centering itself will be done in the slide-bottom animation 
         position: absolute;
-        top:0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        margin: auto;
+        top: 50%;
+        left: 50%;
 
-        -webkit-animation: slide-bottom .7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-        animation: slide-bottom .7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        -webkit-animation: slide-bottom .9s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        animation: slide-bottom .9s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
     }
 
     &__close-button {
@@ -65,10 +60,10 @@
         &--line {
             width: 100%;
             max-width: 7rem;
-            height: 0.25rem;
+            height: .25rem;
             background-color: #2c3e50;
             border-radius: 1rem;
-            border-color: #2c3e50 !important;
+            border-color: #2c3e50;
         }
 
         &--line:first-of-type {
@@ -102,34 +97,34 @@
 /* Animation keyframes */
 @-webkit-keyframes slide-bottom {
 0% {
-    -webkit-transform: translateY(-20rem);
-            transform: translateY(-20rem);
+    -webkit-transform: translate(-50%, -85%);
+            transform: translate(-50%, -85%);
 }
 
 75% {
-    -webkit-transform: translateY(2rem);
-            transform: translateY(2rem);
+    -webkit-transform: translate(-50%, -35%);
+            transform: translate(-50%, -35%);
 }
 
 100% {
-    -webkit-transform: translateY(0);
-            transform: translateY(0);
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
     }
 }
 @keyframes slide-bottom {
 0% {
-    -webkit-transform: translateY(-20rem);
-            transform: translateY(-20rem);
+    -webkit-transform: translate(-50%, -85%);
+            transform: translate(-50%, -85%);
 }
 
 75% {
-    -webkit-transform: translateY(2rem);
-            transform: translateY(2rem);
+    -webkit-transform: translate(-50%, -35%);
+            transform: translate(-50%, -35%);
 }
 
 100% {
-    -webkit-transform: translateY(0);
-            transform: translateY(0);
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
     }
 }
   

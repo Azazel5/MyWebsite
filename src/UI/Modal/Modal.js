@@ -7,7 +7,6 @@ const Modal = props => {
     const { modalOpen, onModalCloseHandler } = props
     const modelContainerRef = useRef()
     BackgroundClickHook(modelContainerRef, onModalCloseHandler)
-    console.log(modalOpen)
 
     return (
         Object.keys(modalOpen).length > 0 &&
@@ -27,7 +26,7 @@ const Modal = props => {
                     <div>{modalOpen['Description']}</div>
                     <a href="#?">{modalOpen['Github Repository']}</a>
                     <div>{modalOpen['Technologies Used']}</div>
-                    <div>{modalOpen['Notes/New Reflection'] && modalOpen['Notes/New Reflection']}</div>
+                    <div>Notes: {modalOpen['Notes/New Reflection'] && modalOpen['Notes/New Reflection']}</div>
                 </div>
             </div>
         </div>

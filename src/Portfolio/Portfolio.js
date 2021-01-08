@@ -5,6 +5,7 @@ import FloatingCard from '../UI/FloatingCard/FloatingCard'
 import Timeline from '../UI/FloatingCard/Timeline/Timeline'
 import PlaceHolder from '../Assets/images/placeholder.png'
 import Modal from '../UI/Modal/Modal'
+import Blog from '../Blog/Blog'
 
 const Portfolio = props => {
     // Props and state variables
@@ -50,13 +51,21 @@ const Portfolio = props => {
     return (
         <div className="portfolio-section" ref={portRef}>
             <div className="portfolio-section__left">
-                <FloatingCard cardTitle="Intro" mainContent={mainContent1} subContent={subContent1} />
-                <FloatingCard cardTitle="Tools I enjoy working with" mainContent={mainContent2} />
+                <FloatingCard
+                    cardTitle="Intro" mainContent={mainContent1} subContent={subContent1}
+                    height="50%"
+                />
+
+                <FloatingCard
+                    cardTitle="Tools I enjoy working with" mainContent={mainContent2}
+                    height="40%"
+                />
             </div>
 
             <div className="portfolio-section__right">
                 <h1 className="portfolio-section__heading">Portfolio</h1>
                 <div className="portfolio-section__portfolio-item-box">{portfioItems}</div>
+                <Blog />
             </div>
 
             <Modal modalOpen={selectedPortfolioItem} onModalCloseHandler={onModalCloseHandler} />
