@@ -1,5 +1,58 @@
 .blog {
     margin-top: 1.5rem;
     text-align: center;
-    height: 150rem;
+    height: 50rem;
+    color: white;
+    margin-bottom: 7.5rem;
+
+    &__container {
+        display: flex;
+        margin-top: 1.5rem;
+        background-color: #303030;
+        height: 100%;
+        border-radius: 0.5rem;
+
+        & > *:not(&--divider) {
+            width: 49.9%;
+        }
+
+        &--left {
+            display: flex;
+            flex-direction: column;
+            text-align: start; // Remove afterwards
+            background-color: #404040;
+
+            &__child {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                height: 5rem;
+                border-bottom: 0.5px solid rgba($color: gray, $alpha: 0.5);
+                padding: 1rem 3rem;
+
+                & > * {
+                    margin: 0.5rem 0;
+                }
+
+                & div {
+                    display: flex;
+                    font-size: 1.3rem;
+
+                    & span:not(:first-child) {
+                        margin-left: 1rem;
+                        flex: 1;
+                    }
+
+                    & span:not(:last-child) {
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+
+        &--divider {
+            flex: 1;
+            background-color: black;
+        }
+    }
 }

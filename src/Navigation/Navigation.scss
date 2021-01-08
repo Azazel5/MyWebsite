@@ -12,6 +12,9 @@
     padding: 0 10rem;
     background-color: transparent;
     transition: background-color 0.3s;
+
+    // High z-index so it goes over everything on the webpage
+    z-index: 999;
 }
 
 .navigation-container {

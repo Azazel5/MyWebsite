@@ -3,11 +3,6 @@
     grid-template-columns: 0.35fr 1fr;
     grid-template-rows: min-content 1fr;
     grid-column-gap: 3rem;
-    position: absolute;
-    left: 0;
-    right: 0;
-    background-color: #f0f2f5;
-    padding: 0 10rem;
 
     &__left,
     &__right {
