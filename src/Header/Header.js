@@ -2,7 +2,7 @@ import CoolPic from '../Assets/images/cool_pic.jpeg'
 
 const Header = props => {
     return (
-        <div className="header">
+        <header className="header">
             <div className="header-hero">
                 <div className="container">
                     <img className="container__image" src={CoolPic} alt="This is me" />
@@ -10,7 +10,7 @@ const Header = props => {
                     <span className="container__subtitle">Don't call me clown, mustache</span>
                 </div>
             </div>
-        </div>
+        </header>
     )
 }
 

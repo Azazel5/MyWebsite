@@ -6,6 +6,8 @@ import Timeline from '../UI/FloatingCard/Timeline/Timeline'
 import PlaceHolder from '../Assets/images/placeholder.png'
 import Modal from '../UI/Modal/Modal'
 import Blog from '../Blog/Blog'
+import Footer from '../Footer/Footer'
+import Contact from '../Contact/Contact'
 
 const Portfolio = props => {
     // Props and state variables
@@ -60,11 +62,14 @@ const Portfolio = props => {
                     cardTitle="Tools I enjoy working with" mainContent={mainContent2}
                     height="40%"
                 />
+
+                <Footer />
             </div>
 
             <div className="portfolio-section__right">
                 <h1 className="portfolio-section__heading">Portfolio</h1>
                 <div className="portfolio-section__portfolio-item-box">{portfioItems}</div>
+                <Contact />
                 <Blog />
             </div>
 
