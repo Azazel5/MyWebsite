@@ -1,0 +1,60 @@
+.contact-me {
+
+    &__box {
+        display: flex;
+
+        & > * {
+            margin-top: 1.5rem;
+        }
+    }
+
+    &__form {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        height: 100%;
+
+        & > *:not(:last-child) {
+            margin-bottom: 1rem;
+        }
+
+        // Individual properties
+        & input {
+            width: 25%;
+            height: 15%;
+            min-width: 12rem;
+        }
+
+        & textarea {
+            resize: none;
+            width: 50%;
+            height: 15rem;
+            min-width: 12rem;
+        }
+
+        & button {
+            min-width: 7rem;
+        }
+
+        // Shared design properties
+        & input,
+        & textarea,
+        & button {
+            font-family: sans-serif;
+            font-size: 1.7rem;
+        }
+
+        & input:active,
+        & textarea:active,
+        & input:focus,
+        & textarea:focus {
+            outline: none;
+        }
+
+        &--errors {
+            color: red;
+        }
+    }
+}
