@@ -1,11 +1,13 @@
 import { useRef, useState } from 'react'
-import { blogs } from '../Portfolio/projects'
 import BackgroundClickHook from '../Hooks/BackgroundClickHook/BackgroundClickHook'
 
 const Blog = props => {
     // State variables 
     const [blogItemClicked, setBlogItemClicked] = useState({})
     const blogContainerRef = useRef()
+
+    // Props
+    const { blogs } = props
 
     // Inline styles
     const onClickChildStyles = { backgroundColor: '#ffae42' }
@@ -22,9 +24,9 @@ const Blog = props => {
             onClick={() => setBlogItemClicked(blog)}
             style={blog.id === blogItemClicked.id ? onClickChildStyles : null}
         >
-            <h4>{blog.title}</h4>
+            <h4>{blog.blog_title}</h4>
             <div>
-                <span>{blog.date}</span>
+                <span>{blog.blog_create_date}</span>
                 <span>Initial content...</span>
             </div>
         </div>
@@ -34,12 +36,9 @@ const Blog = props => {
 
     const rightDivContent = (
         <>
-            <div><span>{blogItemClicked.date} at {blogItemClicked.time}</span></div>
-            <h3>{blogItemClicked.title}</h3>
-            {
-                blogItemClicked.content &&
-                blogItemClicked.content.map(item => <div key={item}>{item}</div>)
-            }
+            <div><span>{blogItemClicked.blog_create_date} at {blogItemClicked.blog_time}</span></div>
+            <h3>{blogItemClicked.blog_title}</h3>
+            <div>{blogItemClicked.blog_content}</div>
         </>
     )
 

@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { projects, tools, timelineVariables } from './projects'
+import { useEffect, useReducer, useState } from 'react'
+import { timelineVariables } from './projects'
 import Sprite from '../Assets/SVG/symbol-defs.svg'
 import FloatingCard from '../UI/FloatingCard/FloatingCard'
 import Timeline from '../UI/FloatingCard/Timeline/Timeline'
@@ -8,41 +8,52 @@ import Modal from '../UI/Modal/Modal'
 import Blog from '../Blog/Blog'
 import Footer from '../Footer/Footer'
 import Contact from '../Contact/Contact'
+import { initialState, GeneralReducer } from './PortfolioReducer'
 
 const Portfolio = props => {
     // Props and state variables
     const { portRef } = props
     const [selectedPortfolioItem, setSelectedPortfolioItem] = useState({})
-
-    const [blogLoaderror, setBlogLoadError] = useState(null);
-    const [isBlogLoaded, setIsBlogLoaded] = useState(false);
-    const [blogs, setBlogs] = useState([]);
+    const [portfolioReducer, dispatchInformation] = useReducer(GeneralReducer, initialState)
 
     useEffect(() => {
-        fetch('http://localhost:8000/blogs/')
-            .then(blogs => blogs.json())
-            .then(result => {
-                    setIsBlogLoaded(true);
-                    setBlogs(result);
-                },
+        dispatchInformation({ type: 'loading' });
 
-                error => {
-                    setIsBlogLoaded(true);
-                    setBlogLoadError(error);
+        const urls = [
+            fetch('http://localhost:8000/blogs/'),
+            fetch('http://localhost:8000/projects/'),
+            fetch('http://localhost:8000/technologies/'),
+        ]
+
+        // Takes an array of promises, resolves and converts them to JSON form, and gets the 
+        // final data. The error/success actions resets the loading action taken at the top of
+        // the effect.
+        Promise.all(urls)
+            .then(responses => Promise.all(responses.map(response => response.json())))
+            .then(data => {
+                const payload = {
+                    'blogs': data[0],
+                    'projects': data[1],
+                    'technologies': data[2]
                 }
-            )
-    }, [])
 
-    if (isBlogLoaded)
-        console.log(blogs);
+                dispatchInformation({ type: 'success', payload: payload })
+
+            }, error => {
+                dispatchInformation({ type: 'error', payload: error })
+            })
+    }, [])
 
     // Event Handlers 
     const onModalCloseHandler = () => {
         setSelectedPortfolioItem({})
     }
 
+
     // Other variables
-    const portfioItems = projects.map(project => (
+    const { blogs, projects, technologies } = portfolioReducer.items
+
+    const portfioItems = portfolioReducer.finished && projects.map(project => (
         <div className="portfolio-section__portfolio-item-box__item" key={project.id}
             onClick={() => setSelectedPortfolioItem(project)}>
 
@@ -61,12 +72,18 @@ const Portfolio = props => {
     )
 
     /* Tools floating card content */
-    const toolsMapper = tools.map(tool => (
-        <div className="tools-grid__element" key={tool.id}>
-            <span>{tool.toolName}</span>
-            <svg className="tools-grid__icon"><use xlinkHref={`${Sprite}#${tool.iconName}`}></use></svg>
-        </div>
-    ))
+    const toolsMapper = portfolioReducer.finished && technologies.map((tool, index) => {
+        if (index < 6) {
+            return (
+                <div className="tools-grid__element" key={tool.id}>
+                    <span>{tool.technology_name}</span>
+                    <svg className="tools-grid__icon"><use xlinkHref={`${Sprite}#${tool.svg_name}`}></use></svg>
+                </div>
+            )
+        }
+
+        return null
+    })
 
     const mainContent2 = (
         <div className="tools-grid">{toolsMapper}</div>
@@ -92,7 +109,7 @@ const Portfolio = props => {
                 <h1 className="portfolio-section__heading">Portfolio</h1>
                 <div className="portfolio-section__portfolio-item-box">{portfioItems}</div>
                 <Contact />
-                <Blog />
+                <Blog blogs={blogs} />
             </div>
 
             <Modal modalOpen={selectedPortfolioItem} onModalCloseHandler={onModalCloseHandler} />
