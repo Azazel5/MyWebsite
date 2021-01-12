@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { projects, tools, timelineVariables } from './projects'
 import Sprite from '../Assets/SVG/symbol-defs.svg'
 import FloatingCard from '../UI/FloatingCard/FloatingCard'
@@ -13,6 +13,28 @@ const Portfolio = props => {
     // Props and state variables
     const { portRef } = props
     const [selectedPortfolioItem, setSelectedPortfolioItem] = useState({})
+
+    const [blogLoaderror, setBlogLoadError] = useState(null);
+    const [isBlogLoaded, setIsBlogLoaded] = useState(false);
+    const [blogs, setBlogs] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:8000/blogs/')
+            .then(blogs => blogs.json())
+            .then(result => {
+                    setIsBlogLoaded(true);
+                    setBlogs(result);
+                },
+
+                error => {
+                    setIsBlogLoaded(true);
+                    setBlogLoadError(error);
+                }
+            )
+    }, [])
+
+    if (isBlogLoaded)
+        console.log(blogs);
 
     // Event Handlers 
     const onModalCloseHandler = () => {

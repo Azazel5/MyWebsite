@@ -3,10 +3,11 @@ from django.db import models
 
 class Technologies(models.Model):
     technology_name = models.CharField(max_length=255)
-    svg_name = models.CharField(max_length=30)
+    svg_name = models.CharField(max_length=30, null=True)
+    show_on_sidebar = models.BooleanField()
 
     def __str__(self):
-        return self.skill
+        return self.technology_name
 
     class Meta:
         verbose_name_plural = 'Technologies'
