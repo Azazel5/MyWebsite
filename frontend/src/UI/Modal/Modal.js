@@ -8,8 +8,16 @@ const Modal = props => {
     const modelContainerRef = useRef()
     BackgroundClickHook(modelContainerRef, onModalCloseHandler)
 
+    const modalItemInvalid = Object.keys(modalOpen).length <= 0
+    let projectTechnologies
+
+    if (!modalItemInvalid)
+        projectTechnologies = modalOpen['project_technology'].map(item => (
+            <span key={item['id']}>{item['technology_name']}</span>
+        ))
+
     return (
-        Object.keys(modalOpen).length > 0 &&
+        !modalItemInvalid &&
         <div className="modal">
             <div className="modal__container" ref={modelContainerRef}>
                 <button className="modal__close-button" onClick={onModalCloseHandler}>
@@ -24,8 +32,10 @@ const Modal = props => {
                         <div className="modal__symbol--line"></div>
                     </div>
                     <div>{modalOpen['project_description']}</div>
-                    <a href={modalOpen['project_view_link']} target="_blank" rel="noopener noreferrer">{modalOpen['Github Repository']}</a>
-                    <div>{modalOpen['project_technology']}</div>
+                    <a href={modalOpen['project_view_link']} target="_blank" rel="noopener noreferrer">{modalOpen['project_view_link']}</a>
+
+                    <div className="centered-box__techcontainer">{projectTechnologies}</div>
+
                     <div>Notes: {modalOpen['notes_reflection'] && modalOpen['notes_reflection']}</div>
                 </div>
             </div>

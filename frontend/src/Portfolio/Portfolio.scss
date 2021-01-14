@@ -4,18 +4,51 @@
     grid-template-rows: min-content 1fr;
     grid-column-gap: 3rem;
 
+    @include respond(tab-port) {
+        grid-template-columns: 0.3fr 1fr;
+        padding: 1rem 3rem;
+    }
+
+    @include respond(big-phone) {
+        grid-template-rows: repeat(auto-fit, minmax(20rem, 1fr));
+        grid-template-columns: none;
+        grid-row-gap: 3rem;
+    }
+
     &__left {
         display: flex;
         flex-direction: column;
         justify-content: center;
         position: -webkit-sticky;
         position: sticky;
-        top: 7rem;
+        top: 2rem;
         height: 100vh;
         margin-top: 1.5rem;
 
         & > *:not(:last-child) {
             margin-bottom: 1.5rem;
+
+            @include respond(big-phone) {
+                margin-bottom: 0;
+            }
+        }
+
+        @include respond(big-phone) {
+            flex-direction: row;
+            justify-content: space-between;
+            position: static;
+            height: 100%;
+        }
+
+        @include respond(medium-phone) {
+            flex-direction: column;
+            position: static;
+            height: 100%;
+        }
+
+        & > *:not(:first-child) {
+            @include respond(big-phone) {
+            }
         }
     }
 
@@ -27,6 +60,11 @@
 
         & > *:not(:last-child) {
             margin-bottom: 4.5rem;
+        }
+
+        @include respond(big-phone) {
+            grid-row: 2 / 3;
+            grid-column: 1 / 2;
         }
     }
 
@@ -89,6 +127,10 @@
         &__item:hover svg {
             opacity: 1;
         }
+
+        @include respond(small-laptop) {
+            grid-template-columns: repeat(auto-fit, minmax(15rem, 0.75fr));
+        }
     }
 }
 
@@ -103,8 +145,13 @@
     font-size: 1.5rem;
     font-style: italic;
     color: black;
-    grid-template-columns: repeat(2, minmax(min-content, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
     grid-gap: 0.8rem;
+
+    @include respond(medium-phone) {
+        grid-template-rows: repeat(auto-fit, minmax(1rem, 1fr));
+        grid-template-columns: none;
+    }
 
     &__element {
         position: relative;

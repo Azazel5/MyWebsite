@@ -92,6 +92,14 @@
     & > *:not(:first-child):not(:last-child) {
         margin-bottom: 2rem;
     }
+
+    &__techcontainer {
+        display: flex;
+        justify-content: space-around;
+        font-size: 1.9rem;
+        font-weight: bold;
+        flex-wrap: wrap;
+    }
 }
 
 /* Animation keyframes */

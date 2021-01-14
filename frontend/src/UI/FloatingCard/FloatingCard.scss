@@ -9,6 +9,10 @@
     box-shadow: 0 0.5rem 1rem 0 rgba($color: black, $alpha: 0.15);
     box-sizing: border-box;
 
+    @include respond(big-phone) {
+        padding: 0;
+    }
+
     & > * {
         margin: 1rem 1rem;
     }

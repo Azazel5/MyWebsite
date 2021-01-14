@@ -94,12 +94,10 @@ const Portfolio = props => {
             <div className="portfolio-section__left">
                 <FloatingCard
                     cardTitle="Intro" mainContent={mainContent1} subContent={subContent1}
-                    height="50%"
                 />
 
                 <FloatingCard
                     cardTitle="Tools I enjoy working with" mainContent={mainContent2}
-                    height="40%"
                 />
 
                 <Footer />

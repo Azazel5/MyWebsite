@@ -9,6 +9,7 @@ class TechnologySerializer(serializers.ModelSerializer):
 
 
 class ProjectSerializer(serializers.ModelSerializer):
+    project_technology = TechnologySerializer(read_only=True, many=True)
     class Meta:
         model = ProjectModel
         fields = '__all__'

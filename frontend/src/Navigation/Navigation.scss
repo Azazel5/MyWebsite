@@ -9,12 +9,16 @@
     text-transform: uppercase;
     color: white;
     z-index: 10;
-    padding: 0 10rem;
+    padding: 0 8rem;
     background-color: transparent;
     transition: background-color 0.3s;
 
     // High z-index so it goes over everything on the webpage
     z-index: 999;
+
+    @include respond(tab-port) {
+        padding: 0;
+    }
 }
 
 .navigation-container {

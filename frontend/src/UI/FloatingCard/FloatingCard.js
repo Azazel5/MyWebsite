@@ -1,12 +1,9 @@
 const FloatingCard = props => {
     // props 
-    const { cardTitle, mainContent, subContent, height } = props
-
-    // inline styles
-    const dimensions = { height: height }
+    const { cardTitle, mainContent, subContent } = props
 
     return (
-        <div className="floating-card" style={dimensions}>
+        <div className="floating-card">
             <h2>{cardTitle}</h2>
             {mainContent}
             {subContent}

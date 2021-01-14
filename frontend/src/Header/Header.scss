@@ -15,6 +15,10 @@
     background-image: url("../Assets/images/mp.jpg");
     background-size: cover;
     border-radius: 0 0 1rem 1rem;
+
+    @include respond(tab-port) {
+        border-radius: 0;
+    }
 }
 
 .container {
