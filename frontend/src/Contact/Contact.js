@@ -2,13 +2,14 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 
 const Contact = props => {
+    const { contactTabRef } = props
     const formik = useFormik({
         initialValues: {
             email: '',
             message: ''
         },
         validationSchema: Yup.object({
-            email: Yup.string().email('Invalid email address').required('So I can know who\'s sending me messages ;)'),
+            email: Yup.string().email('Invalid email address').required('So I can know who\'s sending me messages'),
             message: Yup.string()
                 .max(500, 'Must be 500 characters or less')
                 .required('Give me something to think about!')
@@ -20,7 +21,7 @@ const Contact = props => {
     });
 
     return (
-        <div className="contact-me">
+        <div className="contact-me" ref={contactTabRef}>
             <h1 className="portfolio-section__heading">Send me a message!</h1>
 
             <div className="contact-me__box">

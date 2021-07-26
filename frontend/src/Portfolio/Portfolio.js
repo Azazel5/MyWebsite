@@ -12,7 +12,7 @@ import { initialState, GeneralReducer } from './PortfolioReducer'
 
 const Portfolio = props => {
     // Props and state variables
-    const { portRef } = props
+    const { portRef, contactTabRef, blogTabRef } = props
     const [selectedPortfolioItem, setSelectedPortfolioItem] = useState({})
     const [portfolioReducer, dispatchInformation] = useReducer(GeneralReducer, initialState)
 
@@ -72,17 +72,13 @@ const Portfolio = props => {
     )
 
     /* Tools floating card content */
-    const toolsMapper = portfolioReducer.finished && technologies.map((tool, index) => {
-        if (index < 6) {
-            return (
-                <div className="tools-grid__element" key={tool.id}>
-                    <span>{tool.technology_name}</span>
-                    <svg className="tools-grid__icon"><use xlinkHref={`${Sprite}#${tool.svg_name}`}></use></svg>
-                </div>
-            )
-        }
-
-        return null
+    const toolsMapper = portfolioReducer.finished && technologies.map(tool => {
+        return tool.show_on_sidebar && (
+            <div className="tools-grid__element" key={tool.id}>
+                <span>{tool.technology_name}</span>
+                <svg className="tools-grid__icon"><use xlinkHref={`${Sprite}#${tool.svg_name}`}></use></svg>
+            </div>
+        )
     })
 
     const mainContent2 = (
@@ -106,8 +102,8 @@ const Portfolio = props => {
             <div className="portfolio-section__right">
                 <h1 className="portfolio-section__heading">Portfolio</h1>
                 <div className="portfolio-section__portfolio-item-box">{portfioItems}</div>
-                <Contact />
-                <Blog blogs={blogs} />
+                <Blog blogs={blogs} blogTabRef={blogTabRef} />
+                <Contact contactTabRef={contactTabRef} />
             </div>
 
             <Modal modalOpen={selectedPortfolioItem} onModalCloseHandler={onModalCloseHandler} />

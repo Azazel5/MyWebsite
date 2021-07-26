@@ -7,29 +7,35 @@ import PageTopButton from './UI/PageTopButton/PageTopButton'
 const App = props => {
     // State variables/Refs
     const portfolioTabRef = useRef(null)
-    // const contactTabRef = useRef(null)
-    // const blogTabRef = useRef(null)
+    const contactTabRef = useRef(null)
+    const blogTabRef = useRef(null)
 
     // Event handlers 
     const portfolioClickHandler = () => {
         if (portfolioTabRef.current) {
-            portfolioTabRef.current.scrollIntoView({ block: 'start',  behavior: 'smooth' })
+            portfolioTabRef.current.scrollIntoView({ block: 'start', behavior: 'smooth' })
         }
     }
 
     const contactClickHandler = () => {
-        console.log("contact() clicked");
+        if (contactTabRef.current) {
+            contactTabRef.current.scrollIntoView({ block: 'start', behavior: 'smooth' })
+        }
     }
 
     const blogClickHandler = () => {
-        console.log("Blog() clicked");
+        if (blogTabRef.current) {
+            blogTabRef.current.scrollIntoView({ block: 'start', behavior: 'smooth' })
+        }
     }
 
     return (
         <>
             <Navigation eventHandlers={[portfolioClickHandler, contactClickHandler, blogClickHandler]} />
             <Header />
-            <Portfolio portRef={portfolioTabRef} />
+            <Portfolio 
+                portRef={portfolioTabRef} contactTabRef={contactTabRef}
+                blogTabRef={blogTabRef} />
             <PageTopButton />
         </>
     )

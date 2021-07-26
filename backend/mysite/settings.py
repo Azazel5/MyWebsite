@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     # downloaded apps
     'rest_framework',
     'corsheaders',
-
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -132,20 +132,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
-
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        #'rest_framework.permissions.IsAdminUser',
-        # Work on the authentication with tokens tomorrow 
-    ]
-}
-    
-"""
-Add this in production to disable the APIView 
-'DEFAULT_RENDERER_CLASSES': [
-    'rest_framework.renderers.JSONRenderer',
-]
-"""
+STATIC_URL = '/static/'   
 
 CORS_ORIGIN_ALLOW_ALL = True

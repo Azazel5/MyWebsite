@@ -33,8 +33,8 @@ const Navigation = props => {
         <nav className="navigation-bar" ref={navbarRef} style={navbarStyle}>
             <ul className="navigation-container">
                 <li className={navbarColumnStyle.join(" ")} onClick={eventHandlers[0]}>Portfolio</li>
-                <li className={navbarColumnStyle.join(" ")} onClick={eventHandlers[1]}>Contact</li>
                 <li className={navbarColumnStyle.join(" ")} onClick={eventHandlers[2]}>Blog</li>
+                <li className={navbarColumnStyle.join(" ")} onClick={eventHandlers[1]}>Contact</li>
             </ul>
         </nav>
     )

@@ -1,4 +1,5 @@
 from django.db import models
+from ckeditor.fields import RichTextField
 
 
 class Technologies(models.Model):
@@ -28,7 +29,7 @@ class Blog(models.Model):
     blog_title = models.CharField(max_length=255)
     blog_create_date = models.DateField(auto_now_add=True)
     blog_time = models.TimeField(auto_now=True)
-    blog_content = models.TextField()
+    blog_content = RichTextField()
 
     def __str__(self):
         return self.blog_title

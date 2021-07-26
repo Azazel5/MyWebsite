@@ -1,13 +1,15 @@
 import { useRef, useState } from 'react'
 import BackgroundClickHook from '../Hooks/BackgroundClickHook/BackgroundClickHook'
 
+import DOMPurify from 'dompurify'
+
 const Blog = props => {
     // State variables 
     const [blogItemClicked, setBlogItemClicked] = useState({})
     const blogContainerRef = useRef()
 
     // Props
-    const { blogs } = props
+    const { blogs, blogTabRef } = props
 
     // Inline styles
     const onClickChildStyles = { backgroundColor: '#ffae42' }
@@ -17,11 +19,16 @@ const Blog = props => {
         setBlogItemClicked({})
     }
 
+    const blogItemDoubleClickHandler = (item) => {
+        console.log("Double clicked item: ", item)
+    }
+
     // Other variables 
     const blogPosts = blogs.map(blog => (
         <div
             className="blog__container--left__child" key={blog.id}
             onClick={() => setBlogItemClicked(blog)}
+            onDoubleClick={() => blogItemDoubleClickHandler(blog)}
             style={blog.id === blogItemClicked.id ? onClickChildStyles : null}
         >
             <h4>{blog.blog_title}</h4>
@@ -34,11 +41,16 @@ const Blog = props => {
 
     BackgroundClickHook(blogContainerRef, clearBlogItemState)
 
+    // I'm using django-ckeditor on the backend, which is saving the blog_content as raw HTML. This
+    // means I'm gonna have to render the HTML using dangerouslySetInnerHTML (similar to innerHTML in
+    // normal JS). To prevent the XSS attack possibilies which the documentation alludes to, I will use
+    // DOMPurify to sanitize the HTML before setting it in a div.
+    const cleanBlogContentHTML = DOMPurify.sanitize(blogItemClicked.blog_content)
     const rightDivContent = (
         <>
             <div><span>{blogItemClicked.blog_create_date} at {blogItemClicked.blog_time}</span></div>
             <h3>{blogItemClicked.blog_title}</h3>
-            <div>{blogItemClicked.blog_content}</div>
+            <div dangerouslySetInnerHTML={{ __html: cleanBlogContentHTML }}></div>
         </>
     )
 
@@ -46,14 +58,10 @@ const Blog = props => {
     // Rather, test for whether its keys are larger than 0, which is when it becomes valid
 
     return (
-        <div className="blog">
+        <div className="blog" ref={blogTabRef}>
             <h1 className="portfolio-section__heading">Blog</h1>
             <div className="blog__container" ref={blogContainerRef}>
                 <div className="blog__container--left">{blogPosts}</div>
-                {/* <div className="blog__container--divider">
-                     <div className="blog__container--divider__child"></div> 
-                </div> */}
-
                 <div className="blog__container--right">
                     {Object.keys(blogItemClicked).length > 0 && rightDivContent}
                 </div>

@@ -1,9 +1,8 @@
 .blog {
-    height: 75rem;
     color: white;
-    margin-bottom: 7.5rem;
 
     &__container {
+        min-height: 75rem;
         display: flex;
         margin-top: 1.5rem;
         background-color: #303030;
@@ -19,9 +18,11 @@
             display: flex;
             flex-direction: column;
             background-color: #404040;
-            height: 100%;
             overflow-y: auto;
             overflow-x: hidden;
+
+            // To not let users highlight text on the left
+            user-select: none;
 
             &__child {
                 display: flex;
