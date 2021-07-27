@@ -1,11 +1,13 @@
 import { useRef, useState } from 'react'
-import BackgroundClickHook from '../Hooks/BackgroundClickHook/BackgroundClickHook'
-
 import DOMPurify from 'dompurify'
+
+import FullScreen from './FullScreen/FullScreen'
+import BackgroundClickHook from '../Hooks/BackgroundClickHook/BackgroundClickHook'
 
 const Blog = props => {
     // State variables 
     const [blogItemClicked, setBlogItemClicked] = useState({})
+    const [doubleClickedBlog, setDoubleClickedBlog] = useState({})
     const blogContainerRef = useRef()
 
     // Props
@@ -20,12 +22,16 @@ const Blog = props => {
     }
 
     const blogItemDoubleClickHandler = (item) => {
-        console.log("Double clicked item: ", item)
+        setDoubleClickedBlog(item)
+    }
+
+    const clearBlogItemDoubleClickHandler = () => {
+        setDoubleClickedBlog({})
     }
 
     // Other variables 
-    const blogPosts = blogs.map(blog => (
-        <div
+    const blogPosts = blogs.map(blog => {
+        return <div
             className="blog__container--left__child" key={blog.id}
             onClick={() => setBlogItemClicked(blog)}
             onDoubleClick={() => blogItemDoubleClickHandler(blog)}
@@ -34,10 +40,10 @@ const Blog = props => {
             <h4>{blog.blog_title}</h4>
             <div>
                 <span>{blog.blog_create_date}</span>
-                <span>Initial content...</span>
+                <span>{blog.blog_preview}</span>
             </div>
         </div>
-    ))
+    })
 
     BackgroundClickHook(blogContainerRef, clearBlogItemState)
 
@@ -58,15 +64,24 @@ const Blog = props => {
     // Rather, test for whether its keys are larger than 0, which is when it becomes valid
 
     return (
-        <div className="blog" ref={blogTabRef}>
-            <h1 className="portfolio-section__heading">Blog</h1>
-            <div className="blog__container" ref={blogContainerRef}>
-                <div className="blog__container--left">{blogPosts}</div>
-                <div className="blog__container--right">
-                    {Object.keys(blogItemClicked).length > 0 && rightDivContent}
+        <>
+            <div className="blog" ref={blogTabRef}>
+                <h1 className="portfolio-section__heading">Blog</h1>
+                <div className="blog__container" ref={blogContainerRef}>
+                    <div className="blog__container--left">{blogPosts}</div>
+                    <div className="blog__container--right">
+                        {Object.keys(blogItemClicked).length > 0 && rightDivContent}
+                    </div>
                 </div>
             </div>
-        </div>
+
+            {Object.keys(doubleClickedBlog).length > 0 &&
+                <FullScreen
+                    blog={doubleClickedBlog}
+                    clearBlogItemDoubleClickHandler={clearBlogItemDoubleClickHandler}
+                />}
+
+        </>
     )
 }
 

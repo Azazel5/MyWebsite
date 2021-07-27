@@ -11,6 +11,17 @@
 
     @include respond(big-phone) {
         padding: 0;
+        width: 60%;
+        margin: 0 auto;
+    }
+
+    @include respond(medium-phone) {
+        width: 80%;
+    }
+
+    @include respond(small-phone) {
+        width: 100%;
+        font-size: 1.4rem;
     }
 
     & > * {

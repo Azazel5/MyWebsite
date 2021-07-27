@@ -1,16 +1,12 @@
 .portfolio-section {
     display: grid;
     grid-template-columns: 0.35fr 1fr;
+
     grid-template-rows: min-content 1fr;
     grid-column-gap: 3rem;
 
     @include respond(tab-port) {
-        grid-template-columns: 0.3fr 1fr;
         padding: 1rem 3rem;
-    }
-
-    @include respond(big-phone) {
-        grid-template-rows: repeat(auto-fit, minmax(20rem, 1fr));
         grid-template-columns: none;
         grid-row-gap: 3rem;
     }
@@ -28,27 +24,22 @@
         & > *:not(:last-child) {
             margin-bottom: 1.5rem;
 
-            @include respond(big-phone) {
+            @include respond(tab-port) {
                 margin-bottom: 0;
             }
         }
 
-        @include respond(big-phone) {
+        @include respond(tab-port) {
             flex-direction: row;
             justify-content: space-between;
             position: static;
             height: 100%;
         }
 
-        @include respond(medium-phone) {
+        @include respond(big-phone) {
             flex-direction: column;
             position: static;
             height: 100%;
-        }
-
-        & > *:not(:first-child) {
-            @include respond(big-phone) {
-            }
         }
     }
 
@@ -62,7 +53,7 @@
             margin-bottom: 4.5rem;
         }
 
-        @include respond(big-phone) {
+        @include respond(tab-port) {
             grid-row: 2 / 3;
             grid-column: 1 / 2;
         }

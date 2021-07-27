@@ -30,6 +30,7 @@ class Blog(models.Model):
     blog_create_date = models.DateField(auto_now_add=True)
     blog_time = models.TimeField(auto_now=True)
     blog_content = RichTextField()
+    blog_preview = models.CharField(max_length=20)
 
     def __str__(self):
         return self.blog_title

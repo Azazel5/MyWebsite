@@ -4,7 +4,7 @@
     justify-content: space-between;
     font-size: 1.3rem;
 
-    @include respond(big-phone) {
+    @include respond(tab-port) {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
