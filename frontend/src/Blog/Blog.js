@@ -1,13 +1,14 @@
-import { useRef, useState } from 'react'
+import { useContext, useRef, useState } from 'react'
 import DOMPurify from 'dompurify'
 
 import FullScreen from './FullScreen/FullScreen'
 import BackgroundClickHook from '../Hooks/BackgroundClickHook/BackgroundClickHook'
+import { BlogFullscreenEnabled } from '../Context/Context'
 
 const Blog = props => {
     // State variables 
     const [blogItemClicked, setBlogItemClicked] = useState({})
-    const [doubleClickedBlog, setDoubleClickedBlog] = useState({})
+    const blogFullScreenContext = useContext(BlogFullscreenEnabled)
     const blogContainerRef = useRef()
 
     // Props
@@ -22,11 +23,11 @@ const Blog = props => {
     }
 
     const blogItemDoubleClickHandler = (item) => {
-        setDoubleClickedBlog(item)
+        blogFullScreenContext.setBlogFullScreen(item)
     }
 
     const clearBlogItemDoubleClickHandler = () => {
-        setDoubleClickedBlog({})
+        blogFullScreenContext.setBlogFullScreen({})
     }
 
     // Other variables 
@@ -75,12 +76,11 @@ const Blog = props => {
                 </div>
             </div>
 
-            {Object.keys(doubleClickedBlog).length > 0 &&
+            {Object.keys(blogFullScreenContext.blogFullScreen).length > 0 &&
                 <FullScreen
-                    blog={doubleClickedBlog}
+                    blog={blogFullScreenContext.blogFullScreen}
                     clearBlogItemDoubleClickHandler={clearBlogItemDoubleClickHandler}
                 />}
-
         </>
     )
 }

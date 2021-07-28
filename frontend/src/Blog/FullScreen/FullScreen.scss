@@ -8,9 +8,13 @@
     height: 100%;
     background-color: #303030;
     padding: 2rem 2rem;
+
+    overflow-y: auto;
 }
 
 .blog-content {
+    margin-bottom: 5rem;
+
     &__heading {
         margin-bottom: 4rem;
     }
