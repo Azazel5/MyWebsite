@@ -4,6 +4,7 @@ import DOMPurify from 'dompurify'
 import FullScreen from './FullScreen/FullScreen'
 import BackgroundClickHook from '../Hooks/BackgroundClickHook/BackgroundClickHook'
 import { BlogFullscreenEnabled } from '../Context/Context'
+import { dateConversion } from '../Utils/js/dateConversion'
 
 const Blog = props => {
     // State variables 
@@ -53,13 +54,19 @@ const Blog = props => {
     // normal JS). To prevent the XSS attack possibilies which the documentation alludes to, I will use
     // DOMPurify to sanitize the HTML before setting it in a div.
     const cleanBlogContentHTML = DOMPurify.sanitize(blogItemClicked.blog_content)
-    const rightDivContent = (
-        <>
-            <div><span>{blogItemClicked.blog_create_date} at {blogItemClicked.blog_time}</span></div>
-            <h3>{blogItemClicked.blog_title}</h3>
-            <div dangerouslySetInnerHTML={{ __html: cleanBlogContentHTML }}></div>
-        </>
-    )
+    let rightDivContent = null
+
+    if (Object.keys(blogItemClicked).length > 0)
+        rightDivContent = (
+            <>
+                <div>
+                    <span>Last updated at {dateConversion(blogItemClicked.blog_time)}
+                    </span>
+                </div>
+                <h3>{blogItemClicked.blog_title}</h3>
+                <div dangerouslySetInnerHTML={{ __html: cleanBlogContentHTML }}></div>
+            </>
+        )
 
     // Simply testing for blogItemClicked isn't good enough because it is already an object i.e. {}
     // Rather, test for whether its keys are larger than 0, which is when it becomes valid
@@ -71,7 +78,7 @@ const Blog = props => {
                 <div className="blog__container" ref={blogContainerRef}>
                     <div className="blog__container--left">{blogPosts}</div>
                     <div className="blog__container--right">
-                        {Object.keys(blogItemClicked).length > 0 && rightDivContent}
+                        {rightDivContent && rightDivContent}
                     </div>
                 </div>
             </div>
