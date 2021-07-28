@@ -30,7 +30,7 @@ SECRET_KEY = env('MY_SITE_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -153,3 +153,7 @@ REST_FRAMEWORK = {
 if DEBUG:
     REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES']\
         .append('rest_framework.renderers.BrowsableAPIRenderer')
+
+# Email settings
+
+EMAIL_BACKEND = env('EMAIL_BACKEND')

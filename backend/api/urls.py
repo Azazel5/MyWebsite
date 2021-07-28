@@ -11,5 +11,6 @@ router.register(r'blogs', views.BlogViewset, basename="blogs")
 # The API URLs are now determined automatically by the router.
 urlpatterns = [
     path('', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('contact/', views.ContactView.as_view())
 ]

@@ -1,6 +1,32 @@
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 
+// A function which takes the formik generated JSON from the contact me form
+// and posts it over to the /contact/ endpoint, which is processed by the backend.
+// Django sends the email from the person (after validating it) and sends a success/error 
+// response back
+
+const sendEmail = async (values) => {
+    try {
+        let response = await fetch('http://localhost:8000/contact/', {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(values, null, 2)
+        })
+
+        response = await response.json()
+        console.log(response)
+    }
+
+    // If the request itself didn't go through
+    catch (error) {
+        console.log(error)
+    }
+}
+
 const Contact = props => {
     const { contactTabRef } = props
     const formik = useFormik({
@@ -16,7 +42,8 @@ const Contact = props => {
         }),
         onSubmit: values => {
             // Send request to server 
-            alert(JSON.stringify(values, null, 2));
+            
+            sendEmail(values)
         }
     });
 
@@ -43,7 +70,7 @@ const Contact = props => {
                         <div className="contact-me__form--errors">{formik.errors.message}</div>
                     ) : null}
 
-                    <button type="submit">Submit</button>
+                    <button type="submit" disabled={!formik.isValid}>Submit</button>
                 </form>
             </div>
         </div>
