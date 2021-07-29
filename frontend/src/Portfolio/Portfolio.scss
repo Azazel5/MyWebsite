@@ -60,10 +60,42 @@
     }
 
     &__heading {
-        text-align: center;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
         color: black;
-        font-weight: 600;
         letter-spacing: 1px;
+
+        & h1 {
+            text-align: center;
+            flex: 1;
+            font-weight: 600;
+        }
+
+        & span {
+            font-weight: 300;
+        }
+
+        @include respond(small-laptop) {
+            flex-direction: column;
+
+            & h1 {
+                margin-bottom: 1rem;
+            }
+        }
+
+        @include respond(tab-port) {
+            flex-direction: row;
+        }
+
+        @include respond(big-phone) {
+            flex-direction: column;
+
+            & h1 {
+                margin-bottom: 1rem;
+            }
+        }
     }
 
     &__portfolio-item-box {
@@ -98,25 +130,28 @@
             }
         }
 
-        &__item::after {
-            position: absolute;
-            content: "";
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-            opacity: 0;
-            background-image: linear-gradient(to right bottom, rgba(white, 0.8), rgba(white, 0.8)),
-                url("../Assets/images/placeholder.png");
+        // Add media query hover and pointer to only add these hover styles to laptops
+        @media (hover: hover) and (pointer: fine) {
+            &__item::after {
+                position: absolute;
+                content: "";
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                opacity: 0;
+                background-image: linear-gradient(to right bottom, rgba(white, 0.8), rgba(white, 0.8)),
+                    url("../Assets/images/placeholder.png");
 
-            background-size: cover;
-            cursor: pointer;
-            transition: opacity 0.5s;
-        }
+                background-size: cover;
+                cursor: pointer;
+                transition: opacity 0.5s;
+            }
 
-        &__item:hover::after,
-        &__item:hover svg {
-            opacity: 1;
+            &__item:hover::after,
+            &__item:hover svg {
+                opacity: 1;
+            }
         }
 
         @include respond(small-laptop) {

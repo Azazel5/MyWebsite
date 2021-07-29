@@ -20,6 +20,12 @@
 
         -webkit-animation: slide-bottom .9s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
         animation: slide-bottom .9s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+
+        @include respond(big-phone) {
+            height: 100%;
+            width: 100%;
+            border-radius: 0;
+        }
     }
 
     &__close-button {

@@ -17,6 +17,7 @@ const Blog = props => {
 
     // Inline styles
     const onClickChildStyles = { backgroundColor: '#ffae42' }
+    const fullscreenSpanStyles = { height: '3rem', width: '3rem' }
 
     // Event handlers/Callbacks 
     const clearBlogItemState = () => {
@@ -60,7 +61,18 @@ const Blog = props => {
         rightDivContent = (
             <>
                 <div>
-                    <span>Last updated at {dateConversion(blogItemClicked.blog_time)}
+                    <span>Last updated at {dateConversion(blogItemClicked.blog_time)}</span>
+                    <span
+                        className="fullscreen-button" style={fullscreenSpanStyles}
+                        onClick={() => blogFullScreenContext.setBlogFullScreen(blogItemClicked)
+                        }>
+                        {/* An expand symbol for mobile phones which can't double click */}
+                        <svg height="80%" version="1.1" viewBox="0 0 36 36" width="100%" fill={'white'}>
+                            <path d="m 10,16 2,0 0,-4 4,0 0,-2 L 10,10 l 0,6 0,0 z"></path>
+                            <path d="m 20,10 0,2 4,0 0,4 2,0 L 26,10 l -6,0 0,0 z"></path>
+                            <path d="m 24,24 -4,0 0,2 L 26,26 l 0,-6 -2,0 0,4 0,0 z"></path>
+                            <path d="M 12,20 10,20 10,26 l 6,0 0,-2 -4,0 0,-4 0,0 z"></path>
+                        </svg>
                     </span>
                 </div>
                 <h3>{blogItemClicked.blog_title}</h3>
@@ -74,7 +86,10 @@ const Blog = props => {
     return (
         <>
             <div className="blog" ref={blogTabRef}>
-                <h1 className="portfolio-section__heading">Blog</h1>
+                <div className="portfolio-section__heading">
+                    <h1>Blog</h1>
+                    <span>(single click = load blog on right; double click (or extend button) = fullscreen mode)</span>
+                </div>
                 <div className="blog__container" ref={blogContainerRef}>
                     <div className="blog__container--left">{blogPosts}</div>
                     <div className="blog__container--right">
