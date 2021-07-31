@@ -170,3 +170,5 @@ dmypy.json
 projects.js 
 .vscode 
 emails
+
+*.rdb
