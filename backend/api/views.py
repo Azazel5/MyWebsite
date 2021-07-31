@@ -1,5 +1,6 @@
 import os
-import json
+import redis
+from django.conf import settings
 from rest_framework import status
 from rest_framework import viewsets
 from contextlib import redirect_stdout
@@ -9,6 +10,12 @@ from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
 from .models import Technologies, ProjectModel, Blog
 from .serializers import TechnologySerializer, ProjectSerializer, BlogSerializer
+
+# Instantiate a Redis instance
+redis_instance = redis.StrictRedis(
+    host=settings.REDIS_HOST,
+    port=settings.REDIS_PORT, db=0
+)
 
 
 class TechnologyViewset(viewsets.ModelViewSet):
@@ -60,6 +67,27 @@ class ContactView(APIView):
     permission_classes = [AllowAny, ]
 
     def post(self, request):
+        # Get the request's IP address from the POST request
+        ip_address = request.META['HTTP_ORIGIN']
+
+        # Check if the ip_hash object contains the requesting IP address. If yes and
+        # the number is less than 5, increase the number of requests from the IP. Else
+        # return a Response with a message and don't go through the email processing.
+        # If there's no such IP address in the ip_hash object, create one.
+
+        if redis_instance.hexists("ip_hash", ip_address):
+            if int(redis_instance.hget("ip_hash", ip_address)) < 5:
+                redis_instance.hincrby("ip_hash", ip_address, 1)
+            else:
+                print("Too many requests from IP {} for today".format(ip_address))
+                return Response(
+                    {
+                        'message': f'Email limit exceeded for today! Please try again tomorrow.'
+                    }
+                )
+        else:
+            redis_instance.hset("ip_hash", ip_address, 1)
+
         email = request.data['email']
         message = request.data['message']
 
@@ -96,4 +124,4 @@ class ContactView(APIView):
             os.remove(f'emails/email_{number_of_files + 1}.txt')
 
         finally:
-            return Response(json.dumps(response_message))
+            return Response(response_message)

@@ -18,12 +18,12 @@ const sendEmail = async (values) => {
         })
 
         response = await response.json()
-        console.log(response)
+        alert(response['message'])
     }
 
     // If the request itself didn't go through
     catch (error) {
-        console.log(error)
+        alert(error)
     }
 }
 
@@ -41,9 +41,12 @@ const Contact = props => {
                 .required('Give me something to think about!')
         }),
         onSubmit: values => {
-            // Send request to server 
-            
-            sendEmail(values)
+            // Send request to server and reset the isSubmitting variable which undisabled the button
+
+            setTimeout(() => {
+                sendEmail(values)
+                formik.setSubmitting(false)
+            }, 1000)
         }
     });
 
@@ -70,7 +73,7 @@ const Contact = props => {
                         <div className="contact-me__form--errors">{formik.errors.message}</div>
                     ) : null}
 
-                    <button type="submit" disabled={!formik.isValid}>Submit</button>
+                    <button type="submit" disabled={!(formik.isValid && formik.dirty) || formik.isSubmitting}>Submit</button>
                 </form>
             </div>
         </div>

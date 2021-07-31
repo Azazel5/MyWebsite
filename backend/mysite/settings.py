@@ -157,3 +157,19 @@ if DEBUG:
 # Email settings
 
 EMAIL_BACKEND = env('EMAIL_BACKEND')
+
+# Redis settings
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient"
+        },
+        "KEY_PREFIX": "example"
+    }
+}
+
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
