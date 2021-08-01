@@ -35,7 +35,7 @@ const Contact = props => {
             message: ''
         },
         validationSchema: Yup.object({
-            email: Yup.string().email('Invalid email address').required('So I can know who\'s sending me messages'),
+            email: Yup.string().email('Invalid email address').required('What\'s your email?'),
             message: Yup.string()
                 .max(500, 'Must be 500 characters or less')
                 .required('Give me something to think about!')

@@ -74,12 +74,10 @@ class ContactView(APIView):
         # the number is less than 5, increase the number of requests from the IP. Else
         # return a Response with a message and don't go through the email processing.
         # If there's no such IP address in the ip_hash object, create one.
-
         if redis_instance.hexists("ip_hash", ip_address):
             if int(redis_instance.hget("ip_hash", ip_address)) < 5:
                 redis_instance.hincrby("ip_hash", ip_address, 1)
             else:
-                print("Too many requests from IP {} for today".format(ip_address))
                 return Response(
                     {
                         'message': f'Email limit exceeded for today! Please try again tomorrow.'
@@ -87,6 +85,9 @@ class ContactView(APIView):
                 )
         else:
             redis_instance.hset("ip_hash", ip_address, 1)
+
+            # Expires everyday
+            redis_instance.expire("ip_hash", 86400)
 
         email = request.data['email']
         message = request.data['message']

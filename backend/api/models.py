@@ -4,7 +4,7 @@ from ckeditor.fields import RichTextField
 
 class Technologies(models.Model):
     technology_name = models.CharField(max_length=255)
-    svg_name = models.CharField(max_length=30, null=True)
+    svg_name = models.CharField(max_length=30, null=True, blank=True)
     show_on_sidebar = models.BooleanField()
 
     def __str__(self):
@@ -19,10 +19,14 @@ class ProjectModel(models.Model):
     project_description = models.CharField(max_length=1000)
     project_view_link = models.URLField(max_length=255)
     project_technology = models.ManyToManyField('Technologies')
+    project_image = models.ImageField(upload_to='projects')
     notes_reflection = models.TextField()
 
     def __str__(self):
         return self.project_name
+
+    class Meta:
+        ordering = ['id']
 
 
 class Blog(models.Model):
@@ -34,3 +38,6 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.blog_title
+
+    class Meta:
+        ordering = ['-blog_time']

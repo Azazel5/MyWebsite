@@ -3,7 +3,6 @@ import { timelineVariables } from './projects'
 import Sprite from '../Assets/SVG/symbol-defs.svg'
 import FloatingCard from '../UI/FloatingCard/FloatingCard'
 import Timeline from '../UI/FloatingCard/Timeline/Timeline'
-import PlaceHolder from '../Assets/images/placeholder.png'
 import Modal from '../UI/Modal/Modal'
 import Blog from '../Blog/Blog'
 import Footer from '../Footer/Footer'
@@ -56,8 +55,7 @@ const Portfolio = props => {
     const portfioItems = portfolioReducer.finished && projects.map(project => (
         <div className="portfolio-section__portfolio-item-box__item" key={project.id}
             onClick={() => setSelectedPortfolioItem(project)}>
-
-            <img src={PlaceHolder} alt="Portfolio grid item placeholder" />
+            <img src={project['project_image']} alt="Portfolio grid item placeholder" />
             <svg><use xlinkHref={`${Sprite}#icon-squared-plus`}></use></svg>
         </div>
     ))
