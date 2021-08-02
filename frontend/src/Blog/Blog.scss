@@ -38,6 +38,11 @@
                     height: 8rem;
                 }
 
+                @include respond(small-phone) {
+                    height: 10rem;
+                    font-size: 1.2rem;
+                }
+
                 & > * {
                     margin: 0.5rem 0;
                 }
@@ -64,6 +69,10 @@
                         flex-direction: column;
                         justify-content: center;
                     }
+
+                    @include respond(small-phone) {
+                        font-size: 1.2rem;
+                    }
                 }
             }
         }
@@ -74,7 +83,7 @@
             align-items: flex-start;
             padding: 1rem 3rem;
             overflow-y: auto;
-            overflow-x: hidden;
+            overflow-x: auto;
 
             & > *:not(:last-child) {
                 margin-bottom: 2rem;

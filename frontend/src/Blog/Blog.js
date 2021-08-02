@@ -18,6 +18,7 @@ const Blog = props => {
     // Inline styles
     const onClickChildStyles = { backgroundColor: '#ffae42' }
     const fullscreenSpanStyles = { height: '3rem', width: '3rem' }
+    const blogTextHolderStyles = { width: '100%' }
 
     // Event handlers/Callbacks 
     const clearBlogItemState = () => {
@@ -76,7 +77,10 @@ const Blog = props => {
                     </span>
                 </div>
                 <h3>{blogItemClicked.blog_title}</h3>
-                <div dangerouslySetInnerHTML={{ __html: cleanBlogContentHTML }}></div>
+                <div
+                    style={blogTextHolderStyles}
+                    dangerouslySetInnerHTML={{ __html: cleanBlogContentHTML }}>
+                </div>
             </>
         )
 
