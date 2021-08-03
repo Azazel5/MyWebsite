@@ -56,6 +56,7 @@ const Portfolio = props => {
         <div className="portfolio-section__portfolio-item-box__item" key={project.id}
             onClick={() => setSelectedPortfolioItem(project)}>
             <img src={project['project_image']} alt="Portfolio grid item placeholder" />
+            <span>{project['project_name']}</span>
             <svg><use xlinkHref={`${Sprite}#icon-squared-plus`}></use></svg>
         </div>
     ))

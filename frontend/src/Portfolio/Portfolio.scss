@@ -14,7 +14,8 @@
     }
 
     @include respond(small-phone) {
-        &__left, &__right {
+        &__left,
+        &__right {
             width: 80%;
             margin: 0 auto;
         }
@@ -114,11 +115,12 @@
         grid-gap: 2rem;
 
         &__item {
+            display: flex;
+            flex-direction: column;
             position: relative;
-            background-image: linear-gradient(to right bottom, rgba(#303030, 0.8), rgba(#606060, 0.8));
-
             cursor: pointer;
             transition: background-image 0.5s;
+            text-align: center;
 
             & img {
                 max-width: 100%;
@@ -137,6 +139,13 @@
                 height: 4rem;
                 width: 4rem;
                 opacity: 0;
+            }
+
+            & span {
+                font-size: 1.6rem;
+                font-weight: 550;
+                margin-top: 1.7rem;
+                color: #2c3e50;
             }
         }
 
