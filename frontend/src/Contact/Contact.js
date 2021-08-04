@@ -1,5 +1,6 @@
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import { getCookie } from '../Utils/js/csrf'
 
 // A function which takes the formik generated JSON from the contact me form
 // and posts it over to the /contact/ endpoint, which is processed by the backend.
@@ -8,10 +9,13 @@ import * as Yup from 'yup'
 
 const sendEmail = async (values) => {
     try {
-        let response = await fetch('http://localhost:8000/contact/', {
+        const csrftoken = getCookie('csrftoken')
+
+        let response = await fetch('http://localhost:8000/api/contact/', {
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken
             },
             method: "POST",
             body: JSON.stringify(values, null, 2)

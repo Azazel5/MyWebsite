@@ -19,9 +19,9 @@ const Portfolio = props => {
         dispatchInformation({ type: 'loading' });
 
         const urls = [
-            fetch('http://localhost:8000/blogs/'),
-            fetch('http://localhost:8000/projects/'),
-            fetch('http://localhost:8000/technologies/'),
+            fetch('http://localhost:8000/api/blogs/'),
+            fetch('http://localhost:8000/api/projects/'),
+            fetch('http://localhost:8000/api/technologies/'),
         ]
 
         // Takes an array of promises, resolves and converts them to JSON form, and gets the 

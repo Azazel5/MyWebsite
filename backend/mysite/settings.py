@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 
     # Custom apps
     'api',
+    'serve',
 
     # downloaded apps
     'rest_framework',
@@ -69,7 +70,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -137,6 +138,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# Check the build directory for more static files generated from React
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'build', 'static'),
+]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
